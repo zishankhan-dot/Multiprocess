@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Multiprocessing{
+    public static void main(String[] args) throws Exception{
+        int tasks=100000;
+        List<Thread> t=new ArrayList<>();
+        for (int i =0;i<tasks;i++){
+            Thread thread=Thread.ofVirtual().start(()->{
+                try{
+                    Thread.sleep(100);
+
+                }catch(Exception e){
+                    System.out.println(e);
+                }
+            });
+            t.add(thread);
+            
+        }
+        for (Thread thread: t){
+            thread.join();
+        }
+            
+    }
+}
