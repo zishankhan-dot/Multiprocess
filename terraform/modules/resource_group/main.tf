@@ -85,10 +85,14 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
 resource "local_file" "ssh_key" {
   content  = file("~/.ssh/id_rsa")
-  filename = "${path.module}/private_key.pem"
+  filename = "${path.root}/../ansible/private_key.pem"
 }
 resource "local_file" "ssh_pub_key" {
   content  = file("~/.ssh/id_rsa.pub")
-  filename = "${path.module}/public_key.pem"
+  filename = "${path.root}/../ansible/public_key.pem"
 }
 
+resource "local_file"  "publicIp"{
+  content=azurerm_public_ip.public_ip.ip_address
+  filename="${path.root}/../ansible/public_ip.txt"
+}

@@ -1,0 +1,24 @@
+---
+- name: getting inside azure vm 
+  hosts: ssh-host
+  become: true
+  gather_facts: false  # Add this
+
+  tasks:
+  - name: Install Python 3.8
+    raw: apt update && apt install -y python3.8
+    become: true  
+
+  - name: copying directory to azure vm 
+    synchronize:
+      src: ../scripts/
+      dest: ./scripts
+
+  - name: executing the script to get the top command output
+    command: ./scripts/run.sh
+
+  - name: getting output.txt file from azure vm to local machine
+    fetch:
+      src: ./scripts/top_output.txt
+      dest: ../results/
+      flat: yes

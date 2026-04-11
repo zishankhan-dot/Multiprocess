@@ -1,0 +1,230 @@
+top - 06:29:49 up  1:11,  1 user,  load average: 0.32, 0.17, 0.10
+Tasks: 108 total,   1 running,  57 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  1.9 us,  0.8 sy,  0.0 ni, 96.3 id,  0.9 wa,  0.0 hi,  0.1 si,  0.0 st
+KiB Mem :  3510684 total,  2469012 free,   170488 used,   871184 buff/cache
+KiB Swap:        0 total,        0 free,        0 used.  3089352 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
+    1 root      20   0  159972   9208   6612 S  0.0  0.3   0:03.96 systemd
+    2 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kthreadd
+    3 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 rcu_gp
+    4 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 rcu_par_gp
+    6 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 kworker/0:0+
+    8 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 mm_percpu_wq
+    9 root      20   0       0      0      0 S  0.0  0.0   0:00.29 ksoftirqd/0
+   10 root      20   0       0      0      0 I  0.0  0.0   0:00.25 rcu_sched
+   11 root      rt   0       0      0      0 S  0.0  0.0   0:00.02 migration/0
+   13 root      20   0       0      0      0 S  0.0  0.0   0:00.00 cpuhp/0
+   14 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kdevtmpfs
+   15 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 netns
+   16 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcu_tasks_k+
+   17 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kauditd
+   18 root      20   0       0      0      0 S  0.0  0.0   0:00.00 khungtaskd
+   19 root      20   0       0      0      0 S  0.0  0.0   0:00.00 oom_reaper
+   20 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 writeback
+   21 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kcompactd0
+   22 root      25   5       0      0      0 S  0.0  0.0   0:00.00 ksmd
+   23 root      39  19       0      0      0 S  0.0  0.0   0:00.01 khugepaged
+   69 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 kintegrityd
+   70 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 kblockd
+   71 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 blkcg_punt_+
+   72 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 tpm_dev_wq
+   73 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 ata_sff
+   74 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 md
+   75 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 edac-poller
+   76 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 hv_vmbus_con
+   77 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 hv_pri_chan
+   78 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 hv_sub_chan
+   79 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 devfreq_wq
+   80 root      rt   0       0      0      0 S  0.0  0.0   0:00.00 watchdogd
+   83 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kswapd0
+   84 root      20   0       0      0      0 S  0.0  0.0   0:00.00 ecryptfs-kt+
+   86 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 kthrotld
+   87 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 nfit
+   88 root      20   0       0      0      0 S  0.0  0.0   0:00.00 scsi_eh_0
+   90 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 nvme-wq
+   91 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 nvme-reset-+
+   92 root      20   0       0      0      0 S  0.0  0.0   0:00.00 scsi_eh_1
+   94 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 scsi_tmf_0
+   95 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 nvme-delete+
+   96 root      20   0       0      0      0 S  0.0  0.0   0:00.00 scsi_eh_2
+   98 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 scsi_tmf_1
+   99 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 scsi_tmf_2
+  100 root      20   0       0      0      0 S  0.0  0.0   0:00.00 scsi_eh_3
+  101 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 scsi_tmf_3
+  103 root      20   0       0      0      0 S  0.0  0.0   0:00.00 scsi_eh_4
+  104 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 scsi_tmf_4
+  105 root      20   0       0      0      0 S  0.0  0.0   0:00.17 scsi_eh_5
+  106 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 scsi_tmf_5
+  108 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 vfio-irqfd-+
+  109 root       0 -20       0      0      0 I  0.0  0.0   0:00.15 kworker/0:1+
+  110 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 ipv6_addrco+
+  119 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 kstrp
+  122 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 kworker/u3:0
+  197 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 cryptd
+  306 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 raid5wq
+  357 root      20   0       0      0      0 S  0.0  0.0   0:00.11 jbd2/sdb1-8
+  358 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 ext4-rsv-co+
+  458 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 iscsi_eh
+  463 root      19  -1   94716   8908   8204 S  0.0  0.3   0:00.54 systemd-jou+
+  465 root      20   0  105908   1832   1628 S  0.0  0.1   0:00.00 lvmetad
+  469 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 ib-comp-wq
+  471 root      20   0   43632   4396   3288 S  0.0  0.1   0:00.55 systemd-ude+
+  472 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 ib-comp-unb+
+  473 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 ib_mcast
+  474 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 ib_nl_sa_wq
+  475 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 rdma_cm
+  492 root      20   0       0      0      0 S  0.0  0.0   0:00.09 hv_balloon
+  522 root      20   0   12272   2948   1984 S  0.0  0.1   0:01.32 hv_kvp_daem+
+  687 systemd+  20   0  141788   2996   2556 S  0.0  0.1   0:00.02 systemd-tim+
+  990 systemd+  20   0   79924   5708   5072 S  0.0  0.2   0:00.01 systemd-net+
+ 1002 systemd+  20   0   70620   6008   5412 S  0.0  0.2   0:00.05 systemd-res+
+ 1139 root      20   0       0      0      0 S  0.0  0.0   0:00.00 jbd2/sda1-8
+ 1140 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 ext4-rsv-co+
+ 1203 root      20   0  629496   2440   1556 S  0.0  0.1   0:00.23 lxcfs
+ 1204 syslog    20   0  267280   4504   3712 S  0.0  0.1   0:00.05 rsyslogd
+ 1205 root      20   0   31752   3164   2876 S  0.0  0.1   0:00.00 cron
+ 1211 message+  20   0   50172   4444   3740 S  0.0  0.1   0:00.49 dbus-daemon
+ 1215 root      20   0  288096   6964   6056 S  0.0  0.2   0:00.15 accounts-da+
+ 1235 root      20   0   70524   6004   5276 S  0.0  0.2   0:00.18 systemd-log+
+ 1236 root      20   0  171256  17544   9404 S  0.0  0.5   0:00.07 networkd-di+
+ 1237 root      20   0   80236  22104   9060 S  0.0  0.6   0:00.33 python3
+ 1239 daemon    20   0   28336   2360   2152 S  0.0  0.1   0:00.00 atd
+ 1245 root      20   0   16420   2356   2204 S  0.0  0.1   0:00.01 agetty
+ 1246 root      20   0  288884   6496   5700 S  0.0  0.2   0:00.03 polkitd
+ 1247 root      20   0   14896   1916   1780 S  0.0  0.1   0:00.00 agetty
+ 1255 root      20   0  187692  20200  12296 S  0.0  0.6   0:00.06 unattended-+
+ 1350 root      20   0   72304   6484   5728 S  0.0  0.2   0:00.02 sshd
+ 1404 root      20   0    4516    804    740 S  0.0  0.0   0:00.00 none
+ 1539 root      20   0  461268  29928  10008 S  0.0  0.9   0:04.00 python3
+ 1876 root      20   0       0      0      0 I  0.0  0.0   0:00.24 kworker/u2:+
+ 2197 root      20   0       0      0      0 I  0.0  0.0   0:00.22 kworker/u2:+
+ 4529 root      20   0       0      0      0 I  0.0  0.0   0:00.38 kworker/0:1+
+23283 root      20   0       0      0      0 I  0.0  0.0   0:00.00 kworker/0:0+
+24096 root      20   0       0      0      0 I  0.0  0.0   0:00.06 kworker/u2:+
+25906 root      20   0       0      0      0 I  0.0  0.0   0:00.00 kworker/0:2+
+26221 root      20   0  107988   7244   6224 S  0.0  0.2   0:00.01 sshd
+26223 azureus+  20   0   76660   7752   6672 S  0.0  0.2   0:00.01 systemd
+26224 azureus+  20   0  193952   2784     32 S  0.0  0.1   0:00.00 (sd-pam)
+26298 azureus+  20   0  108420   5244   3920 S  0.0  0.1   0:00.01 sshd
+26857 azureus+  20   0    4636    932    864 S  0.0  0.0   0:00.00 sh
+26858 root      20   0   68300   4392   3872 S  0.0  0.1   0:00.00 sudo
+26859 root      20   0    4636    888    824 S  0.0  0.0   0:00.00 sh
+26860 root      20   0   62648  17992   8496 S  0.0  0.5   0:00.13 python3.8
+26862 root      20   0   13320   3220   2996 S  0.0  0.1   0:00.00 run.sh
+26863 root      20   0   44408   3980   3456 R  0.0  0.1   0:00.00 top
+top - 06:31:16 up  1:13,  1 user,  load average: 0.07, 0.12, 0.09
+Tasks: 108 total,   1 running,  57 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  1.9 us,  0.8 sy,  0.0 ni, 96.3 id,  0.9 wa,  0.0 hi,  0.1 si,  0.0 st
+KiB Mem :  3510684 total,  2468616 free,   170612 used,   871456 buff/cache
+KiB Swap:        0 total,        0 free,        0 used.  3089204 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
+    1 root      20   0  159972   9208   6612 S  0.0  0.3   0:03.99 systemd
+    2 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kthreadd
+    3 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 rcu_gp
+    4 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 rcu_par_gp
+    6 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 kworker/0:0+
+    8 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 mm_percpu_wq
+    9 root      20   0       0      0      0 S  0.0  0.0   0:00.30 ksoftirqd/0
+   10 root      20   0       0      0      0 I  0.0  0.0   0:00.25 rcu_sched
+   11 root      rt   0       0      0      0 S  0.0  0.0   0:00.02 migration/0
+   13 root      20   0       0      0      0 S  0.0  0.0   0:00.00 cpuhp/0
+   14 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kdevtmpfs
+   15 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 netns
+   16 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcu_tasks_k+
+   17 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kauditd
+   18 root      20   0       0      0      0 S  0.0  0.0   0:00.00 khungtaskd
+   19 root      20   0       0      0      0 S  0.0  0.0   0:00.00 oom_reaper
+   20 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 writeback
+   21 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kcompactd0
+   22 root      25   5       0      0      0 S  0.0  0.0   0:00.00 ksmd
+   23 root      39  19       0      0      0 S  0.0  0.0   0:00.02 khugepaged
+   69 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 kintegrityd
+   70 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 kblockd
+   71 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 blkcg_punt_+
+   72 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 tpm_dev_wq
+   73 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 ata_sff
+   74 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 md
+   75 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 edac-poller
+   76 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 hv_vmbus_con
+   77 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 hv_pri_chan
+   78 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 hv_sub_chan
+   79 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 devfreq_wq
+   80 root      rt   0       0      0      0 S  0.0  0.0   0:00.00 watchdogd
+   83 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kswapd0
+   84 root      20   0       0      0      0 S  0.0  0.0   0:00.00 ecryptfs-kt+
+   86 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 kthrotld
+   87 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 nfit
+   88 root      20   0       0      0      0 S  0.0  0.0   0:00.00 scsi_eh_0
+   90 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 nvme-wq
+   91 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 nvme-reset-+
+   92 root      20   0       0      0      0 S  0.0  0.0   0:00.00 scsi_eh_1
+   94 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 scsi_tmf_0
+   95 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 nvme-delete+
+   96 root      20   0       0      0      0 S  0.0  0.0   0:00.00 scsi_eh_2
+   98 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 scsi_tmf_1
+   99 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 scsi_tmf_2
+  100 root      20   0       0      0      0 S  0.0  0.0   0:00.00 scsi_eh_3
+  101 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 scsi_tmf_3
+  103 root      20   0       0      0      0 S  0.0  0.0   0:00.00 scsi_eh_4
+  104 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 scsi_tmf_4
+  105 root      20   0       0      0      0 S  0.0  0.0   0:00.17 scsi_eh_5
+  106 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 scsi_tmf_5
+  108 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 vfio-irqfd-+
+  109 root       0 -20       0      0      0 I  0.0  0.0   0:00.15 kworker/0:1+
+  110 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 ipv6_addrco+
+  119 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 kstrp
+  122 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 kworker/u3:0
+  197 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 cryptd
+  306 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 raid5wq
+  357 root      20   0       0      0      0 S  0.0  0.0   0:00.11 jbd2/sdb1-8
+  358 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 ext4-rsv-co+
+  458 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 iscsi_eh
+  463 root      19  -1   94820   9004   8292 S  0.0  0.3   0:00.55 systemd-jou+
+  465 root      20   0  105908   1832   1628 S  0.0  0.1   0:00.00 lvmetad
+  469 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 ib-comp-wq
+  471 root      20   0   43632   4396   3288 S  0.0  0.1   0:00.58 systemd-ude+
+  472 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 ib-comp-unb+
+  473 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 ib_mcast
+  474 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 ib_nl_sa_wq
+  475 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 rdma_cm
+  492 root      20   0       0      0      0 S  0.0  0.0   0:00.09 hv_balloon
+  522 root      20   0   12272   2948   1984 S  0.0  0.1   0:01.34 hv_kvp_daem+
+  687 systemd+  20   0  141788   2996   2556 S  0.0  0.1   0:00.02 systemd-tim+
+  990 systemd+  20   0   79924   5708   5072 S  0.0  0.2   0:00.01 systemd-net+
+ 1002 systemd+  20   0   70620   6008   5412 S  0.0  0.2   0:00.06 systemd-res+
+ 1139 root      20   0       0      0      0 S  0.0  0.0   0:00.00 jbd2/sda1-8
+ 1140 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 ext4-rsv-co+
+ 1203 root      20   0  629496   2440   1556 S  0.0  0.1   0:00.23 lxcfs
+ 1204 syslog    20   0  267280   4504   3712 S  0.0  0.1   0:00.05 rsyslogd
+ 1205 root      20   0   31752   3164   2876 S  0.0  0.1   0:00.00 cron
+ 1211 message+  20   0   50172   4444   3740 S  0.0  0.1   0:00.51 dbus-daemon
+ 1215 root      20   0  288096   6980   6056 S  0.0  0.2   0:00.16 accounts-da+
+ 1235 root      20   0   70524   6004   5276 S  0.0  0.2   0:00.19 systemd-log+
+ 1236 root      20   0  171256  17544   9404 S  0.0  0.5   0:00.07 networkd-di+
+ 1237 root      20   0   80236  22104   9060 S  0.0  0.6   0:00.33 python3
+ 1239 daemon    20   0   28336   2360   2152 S  0.0  0.1   0:00.00 atd
+ 1245 root      20   0   16420   2356   2204 S  0.0  0.1   0:00.01 agetty
+ 1246 root      20   0  288884   6496   5700 S  0.0  0.2   0:00.03 polkitd
+ 1247 root      20   0   14896   1916   1780 S  0.0  0.1   0:00.00 agetty
+ 1255 root      20   0  187692  20200  12296 S  0.0  0.6   0:00.06 unattended-+
+ 1350 root      20   0   72304   6484   5728 S  0.0  0.2   0:00.02 sshd
+ 1404 root      20   0    4516    804    740 S  0.0  0.0   0:00.00 none
+ 1539 root      20   0  461268  29928  10008 S  0.0  0.9   0:04.06 python3
+ 1876 root      20   0       0      0      0 I  0.0  0.0   0:00.26 kworker/u2:+
+ 2197 root      20   0       0      0      0 I  0.0  0.0   0:00.24 kworker/u2:+
+ 4529 root      20   0       0      0      0 I  0.0  0.0   0:00.42 kworker/0:1+
+23283 root      20   0       0      0      0 I  0.0  0.0   0:00.00 kworker/0:0+
+24096 root      20   0       0      0      0 I  0.0  0.0   0:00.06 kworker/u2:+
+25906 root      20   0       0      0      0 I  0.0  0.0   0:00.00 kworker/0:2+
+26981 root      20   0  107988   7260   6236 S  0.0  0.2   0:00.01 sshd
+26983 azureus+  20   0   76656   7872   6784 S  0.0  0.2   0:00.02 systemd
+26984 azureus+  20   0  193952   2784     32 S  0.0  0.1   0:00.00 (sd-pam)
+27058 azureus+  20   0  108420   5492   4164 S  0.0  0.2   0:00.01 sshd
+27616 azureus+  20   0    4636    872    808 S  0.0  0.0   0:00.00 sh
+27617 root      20   0   68300   4312   3792 S  0.0  0.1   0:00.00 sudo
+27618 root      20   0    4636    856    792 S  0.0  0.0   0:00.00 sh
+27619 root      20   0   62648  18052   8548 S  0.0  0.5   0:00.12 python3.8
+27621 root      20   0   13320   3096   2864 S  0.0  0.1   0:00.00 run.sh
+27622 root      20   0   44408   3952   3428 R  0.0  0.1   0:00.00 top
