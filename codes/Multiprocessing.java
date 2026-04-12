@@ -6,7 +6,7 @@ class Multiprocessing{
         int tasks=100000;
         List<Thread> t=new ArrayList<>();
         for (int i =0;i<tasks;i++){
-            Thread thread=Thread.ofVirtual().start(()->{
+            Thread thread=new Thread(()->{
                 try{
                     Thread.sleep(100);
 

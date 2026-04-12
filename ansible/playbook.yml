@@ -22,3 +22,18 @@
       src: ./scripts/top_output.txt
       dest: ../results/
       flat: yes
+
+  
+  - name: copy codes to azure rm 
+    synchronize:
+      src: ../codes/
+      dest: ./codes
+
+  - name: run the benchmarking script for java 
+    command: ./scripts/Benchmarking-Java.sh
+
+  - name: fetch output directory for java benchmarking 
+    fetch:
+      src: ./results/compilation_java.txt
+      dest: ../results/
+      flat: yes
