@@ -64,7 +64,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   location = azurerm_resource_group.rmg.location  
   resource_group_name = azurerm_resource_group.rmg.name 
   network_interface_ids = [azurerm_network_interface.nic.id]
-  size = "Standard_DS1_v2"
+  size = "B1ls"
   admin_username = "azureuser"
   disable_password_authentication = true
   admin_ssh_key {
@@ -78,7 +78,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   source_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
+    sku       = "24.04-LTS"
     version   = "latest"
   }
 }
