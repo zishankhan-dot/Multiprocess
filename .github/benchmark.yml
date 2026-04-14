@@ -1,2 +1,89 @@
-#will write 
+name: benchmark-selfhostedRunner
+on : 
+  workflow_dispatch:
+  jobs:
+  benchmark:
+    runs-on: self-hosted
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - c
+          - cpp
+          - java
+          - java-virtual
+          - python
 
+    env:
+      TF_IN_AUTOMATION: true
+      TARGET: ${{ matrix.target }}
+      RUN_ID: ${{ github.run_id }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform init
+        working-directory: terraform
+        shell: bash
+        run: |
+          set -e
+          terraform init
+
+      - name: Terraform apply
+        working-directory: terraform
+        shell: bash
+        run: |
+          set -e
+          terraform apply -auto-approve \
+            -var="resource_group_name=rg-${TARGET}-${RUN_ID}" \
+            -var="vm_name=vm-${TARGET}-${RUN_ID}" 
+        
+      - name: Read Terraform outputs
+        id: tfout
+        working-directory: terraform
+        shell: bash
+        run: |
+          set -e
+          echo "public_ip=$(terraform output -raw public_ip)" >> "$GITHUB_OUTPUT"
+          echo "admin_username=$(terraform output -raw admin_username)" >> "$GITHUB_OUTPUT"
+
+      - name: Ensure Ansible is installed on self-hosted runner
+        shell: bash
+        run: |
+          set -e
+          python3 -m pip install --upgrade pip
+          python3 -m pip install ansible
+
+      - name: Run inventory.sh script file to get inventory.ini file 
+        working-directory: ansible
+        shell: bash inventory.sh 
+
+      - name: Run ansible playbook file 
+        working-directory: ansible
+        shell: bash
+        run: |
+          set -e
+          ansible-playbook -i inventory.ini playbook.yml --extra-vars "benchmark_target=${TARGET}"
+        
+      - name: Upload result artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+         name: results-${{ matrix.target }}
+         path: results/${{ matrix.target }}/
+         if-no-files-found: warn
+
+      - name: Terraform destroy
+        if: always()
+        working-directory: terraform
+        shell: bash
+        run: |
+           set -e
+           terraform destroy -auto-approve \
+           -var="resource_group_name=rg-${TARGET}-${RUN_ID}" \
+            -var="vm_name=vm-${TARGET}-${RUN_ID}" \
+            -var="ssh_public_key=$(cat ~/.ssh/id_rsa.pub)"

@@ -4,6 +4,10 @@
   become: true
   gather_facts: false  # Add this
 
+  vars:
+    project_dir: /home/azureuser/benchmarking_project
+    playbook_dir: "{{ playbook_dir }}"
+
   tasks:
   - name: Install Python 3.8
     raw: apt update && apt install -y python3
@@ -17,32 +21,34 @@
     raw: apt install -y default-jdk
     become: true
 
+  - name: Ensure project directory exists
+    raw: mkdir -p {{ project_dir }}/scripts {{ project_dir }}/codes {{ project_dir }}/results
+    changed_when: false
+
 
   - name: copying directory to azure vm 
     synchronize:
       src: ../scripts/
-      dest: ./scripts
-
-  - name: executing the script to get the top command output
-    command: ./scripts/run.sh
-
-  - name: getting output.txt file from azure vm to local machine
-    fetch:
-      src: ./scripts/top_output.txt
-      dest: ../results/
-      flat: yes
-
-  
+      dest: "{{ project_dir }}/scripts/"  
+      
   - name: copy codes to azure rm 
     synchronize:
       src: ../codes/
-      dest: ./codes
+      dest: "{{ project_dir }}/codes"
+    
+  - name: Make benchmark script executable
+    file:
+        path: "{{ project_dir }}/scripts/run_benchmark.sh"
+        mode: "0755"
+        state: file
 
   - name: run the benchmarking script for given languages 
-    command: ./scripts/Benchmarking.sh
+    command: bash "{{ project_dir }}/scripts/run_benchmark.sh" "{{ benchmark_target }}"
+    args:
+      chdir: "{{project_dir}}"
 
   - name: fetch output directory for java benchmarking 
     synchronize:
-      src: ./results/
-      dest: ../results/
+      src: "{{project_dir}}/results/"
+      dest: "{{playbook_dir}}/../results/{{benchmark_target}}/"
       mode: pull
