@@ -10,15 +10,15 @@
 
   tasks:
   - name: Install Python 3.8
-    raw: apt update && apt install -y python3
+    raw: sudo apt update && apt install -y python3
     become: true  
 
   - name: install gcc and g++ 
-    raw: apt install -y build-essential
+    raw: sudo  apt install -y build-essential
     become: true
 
   - name : install javac 
-    raw: apt install -y default-jdk
+    raw: sudo apt install -y default-jdk
     become: true
 
   - name: Ensure project directory exists
