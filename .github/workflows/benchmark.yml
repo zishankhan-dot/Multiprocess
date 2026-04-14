@@ -66,6 +66,21 @@ jobs:
         run: |
           chmod +x ./inventory.sh
           ./inventory.sh
+      - name: Wait for SSH
+        shell: bash
+        run: |
+            for i in {1..30}; do
+              ssh -o StrictHostKeyChecking=no \
+                  -o UserKnownHostsFile=/dev/null \
+                  -o ConnectTimeout=5 \
+                  -i /tmp/private_key.pem \
+                  azureuser@${{ steps.tfout.outputs.public_ip }} \
+                 "echo ok" && exit 0
+
+               echo "Waiting for SSH..."
+               sleep 10
+            done
+            exit 1
 
       - name: Run ansible playbook file 
         working-directory: ansible
