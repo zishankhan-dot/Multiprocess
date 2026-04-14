@@ -9,10 +9,10 @@ jobs:
       matrix:
         target:
           - c
-          - cpp
-          - java
-          - java-virtual
-          - python
+ #         - cpp
+  #        - java
+   #       - java-virtual
+    #      - python
 
     env:
       TF_IN_AUTOMATION: true
@@ -72,7 +72,7 @@ jobs:
         shell: bash
         run: |
           set -e
-          ansible-playbook -i inventory.ini playbook.yml --extra-vars "benchmark_target=${TARGET}"
+          ansible-playbook -vvv -i inventory.ini playbook.yml --extra-vars "benchmark_target=${TARGET}"
         
       - name: Upload result artifact
         if: always()
