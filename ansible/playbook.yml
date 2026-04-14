@@ -9,17 +9,26 @@
     playbook_dir: "{{ playbook_dir }}"
 
   tasks:
+  - name : updating ubuntu 
+    apt:
+      update_cache: yes
+  
+
   - name: Install Python 3.8
-    raw: sudo apt update && apt install -y python3
-    become: true  
+    apt:
+      name: python3
+      state: present
 
   - name: install gcc and g++ 
-    raw: sudo  apt install -y build-essential
-    become: true
+    apt:
+      name: 
+        - build-essential
+      state: present
 
   - name : install javac 
-    raw: sudo apt install -y default-jdk
-    become: true
+    apt:
+      name: default-jdk
+      state: present
 
   - name: Ensure project directory exists
     raw: mkdir -p {{ project_dir }}/scripts {{ project_dir }}/codes {{ project_dir }}/results
