@@ -66,15 +66,17 @@ jobs:
         run: |
           chmod +x ./inventory.sh
           ./inventory.sh
+
       - name: Wait for SSH
         shell: bash
         run: |
+            IP=$(cat ansible/public_ip.txt)
             for i in {1..30}; do
               ssh -o StrictHostKeyChecking=no \
                   -o UserKnownHostsFile=/dev/null \
                   -o ConnectTimeout=5 \
                   -i /tmp/private_key.pem \
-                  azureuser@${{ steps.tfout.outputs.public_ip }} \
+                  azureuser"$IP" \
                  "echo ok" && exit 0
 
                echo "Waiting for SSH..."
