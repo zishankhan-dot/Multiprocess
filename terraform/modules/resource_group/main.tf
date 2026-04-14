@@ -60,7 +60,7 @@ resource "azurerm_network_interface_security_group_association" "nsg_assoc" {
 }
 
 resource "azurerm_linux_virtual_machine" "vm" {
-  name = "myvm"
+  name = var.vm_name
   location = azurerm_resource_group.rmg.location  
   resource_group_name = azurerm_resource_group.rmg.name 
   network_interface_ids = [azurerm_network_interface.nic.id]
