@@ -1,5 +1,3 @@
-
 variable "subscription_id" {
   type        = string
-  description = "e02004f7-fd90-4fb3-9009-64201ae8dc5f"
 }
