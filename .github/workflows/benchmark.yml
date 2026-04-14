@@ -62,7 +62,7 @@ jobs:
         working-directory: ansible
         shell: bash
         run: |
-            inventory.sh 
+            ./inventory.sh 
 
       - name: Run ansible playbook file 
         working-directory: ansible
