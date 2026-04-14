@@ -87,5 +87,4 @@ jobs:
            set -e
            terraform destroy -auto-approve \
            -var="resource_group_name=rg-${TARGET}-${RUN_ID}" \
-            -var="vm_name=vm-${TARGET}-${RUN_ID}" \
-            -var="ssh_public_key=$(cat ~/.ssh/id_rsa.pub)"
+           -var="vm_name=vm-${TARGET}-${RUN_ID}"
