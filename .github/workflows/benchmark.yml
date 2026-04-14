@@ -42,14 +42,7 @@ jobs:
             -var="resource_group_name=rg-${TARGET}-${RUN_ID}" \
             -var="vm_name=vm-${TARGET}-${RUN_ID}" 
         
-      - name: Read Terraform outputs
-        id: tfout
-        working-directory: terraform
-        shell: bash
-        run: |
-          set -e
-          echo "public_ip=$(terraform output -raw public_ip)" >> "$GITHUB_OUTPUT"
-          echo "admin_username=$(terraform output -raw admin_username)" >> "$GITHUB_OUTPUT"
+      
 
       - name: Ensure Ansible is installed on self-hosted runner
         shell: bash
