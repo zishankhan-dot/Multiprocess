@@ -9,6 +9,14 @@
     playbook_dir: "{{ playbook_dir }}"
 
   tasks:
+  - name: Wait for cloud-init to finish
+    raw: while [ ! -f /var/lib/cloud/instance/boot-finished ]; do sleep 5; done
+    changed_when: false
+
+  - name: Wait for apt lock to clear
+    raw: while sudo fuser /var/lib/dpkg/lock-frontend >/dev/null 2>&1; do sleep 5; done
+    changed_when: false
+
   - name : updating ubuntu 
     apt:
       update_cache: yes
