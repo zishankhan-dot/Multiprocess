@@ -1,7 +1,7 @@
 name: benchmark-selfhostedRunner
 on : 
   workflow_dispatch:
-  jobs:
+jobs:
   benchmark:
     runs-on: self-hosted
     strategy:
@@ -60,7 +60,9 @@ on :
 
       - name: Run inventory.sh script file to get inventory.ini file 
         working-directory: ansible
-        shell: bash inventory.sh 
+        shell: bash
+        run: |
+            inventory.sh 
 
       - name: Run ansible playbook file 
         working-directory: ansible
