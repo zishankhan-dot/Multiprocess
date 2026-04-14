@@ -6,8 +6,17 @@
 
   tasks:
   - name: Install Python 3.8
-    raw: apt update && apt install -y python3.8
+    raw: apt update && apt install -y python3
     become: true  
+
+  - name: install gcc and g++ 
+    raw: apt install -y build-essential
+    become: true
+
+  - name : install javac 
+    raw: apt install -y default-jdk
+    become: true
+
 
   - name: copying directory to azure vm 
     synchronize:
@@ -29,11 +38,11 @@
       src: ../codes/
       dest: ./codes
 
-  - name: run the benchmarking script for java 
-    command: ./scripts/Benchmarking-Java.sh
+  - name: run the benchmarking script for given languages 
+    command: ./scripts/Benchmarking.sh
 
   - name: fetch output directory for java benchmarking 
-    fetch:
-      src: ./results/compilation_java.txt
+    synchronize:
+      src: ./results/
       dest: ../results/
-      flat: yes
+      mode: pull

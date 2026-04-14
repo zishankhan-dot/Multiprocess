@@ -1,10 +1,8 @@
 import java.util.ArrayList;
-import java.util.List;
-
 class Multiprocessing_Virtual {
     
     public static void main(String[] args) throws Exception {
-        int tasks = 100000;
+        int tasks = 10000;
         ArrayList<Thread> threads = new ArrayList<>();
 
         for (int i =0; i<tasks;i++){
