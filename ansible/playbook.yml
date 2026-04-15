@@ -14,22 +14,22 @@
       force_apt_get: yes
       update_cache_retries: 5
       update_cache_retry_max_delay: 30
-    
+  
+  - name: Ensure project directory exists
+    raw: mkdir -p {{ project_dir }}/scripts {{ project_dir }}/codes {{ project_dir }}/results
+    changed_when: false
+  
+  - name: copying directory to azure vm 
+    synchronize:
+      src: ../scripts/
+      dest: "{{ project_dir }}/scripts/"  
+
+
   - name: run run.sh to download the required compiler for the benchmarking 
     command: bash "{{ playbook_dir }}/scripts/run.sh" "{{ benchmark_target }}"
     args:
       chdir: "{{playbook_dir}}"
 
-
-  - name: Ensure project directory exists
-    raw: mkdir -p {{ project_dir }}/scripts {{ project_dir }}/codes {{ project_dir }}/results
-    changed_when: false
-
-
-  - name: copying directory to azure vm 
-    synchronize:
-      src: ../scripts/
-      dest: "{{ project_dir }}/scripts/"  
       
   - name: copy codes to azure rm 
     synchronize:
