@@ -8,7 +8,13 @@
     playbook_dir: "{{ playbook_dir }}"
 
   tasks:
-  
+  - name : update cache  
+    apt:
+      update_cache: yes
+      force_apt_get: yes
+      update_cache_retries: 5
+      update_cache_retry_max_delay: 30
+    
   - name: install gcc and g++ 
     apt:
       name: 
