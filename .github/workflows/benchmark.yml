@@ -1,23 +1,30 @@
 name: benchmark-selfhostedRunner
-on : 
+
+on:
   workflow_dispatch:
+
 jobs:
   benchmark:
-    runs-on: self-hosted
+    runs-on: [self-hosted, linux, x64]
+
     strategy:
       fail-fast: false
       matrix:
         target:
           - c
- #         - cpp
-  #        - java
-   #       - java-virtual
-    #      - python
+          # - cpp
+          # - java
+          # - java-virtual
+          # - python
 
     env:
       TF_IN_AUTOMATION: true
       TARGET: ${{ matrix.target }}
       RUN_ID: ${{ github.run_id }}
+
+    defaults:
+      run:
+        shell: bash
 
     steps:
       - name: Checkout repository
@@ -28,87 +35,105 @@ jobs:
 
       - name: Terraform init
         working-directory: terraform
-        shell: bash
         run: |
-          set -e
+          set -euo pipefail
           terraform init
 
       - name: Terraform apply
         working-directory: terraform
-        shell: bash
         run: |
-          set -e
+          set -euo pipefail
           terraform apply -auto-approve \
             -var="resource_group_name=rg-${TARGET}-${RUN_ID}" \
-            -var="vm_name=vm-${TARGET}-${RUN_ID}" 
-        
+            -var="vm_name=vm-${TARGET}-${RUN_ID}"
+
       - name: Configure SSH for automation
-        shell: bash
         run: |
+          set -euo pipefail
           mkdir -p ~/.ssh
-          cat > ~/.ssh/config <<EOF
+          cat > ~/.ssh/config <<'EOF'
           Host *
-          StrictHostKeyChecking no
-          UserKnownHostsFile /dev/null
+            StrictHostKeyChecking no
+            UserKnownHostsFile /dev/null
+            ServerAliveInterval 15
+            ServerAliveCountMax 3
           EOF
           chmod 600 ~/.ssh/config
+          rm -rf ~/.ansible/cp/*
 
       - name: Ensure Ansible is installed on self-hosted runner
-        shell: bash
         run: |
-          set -e
+          set -euo pipefail
           python3 -m pip install --upgrade pip
           python3 -m pip install ansible
 
-      - name: Run inventory.sh script file to get inventory.ini file 
+      - name: Generate inventory
         working-directory: ansible
-        shell: bash
         run: |
+          set -euo pipefail
           chmod +x ./inventory.sh
           ./inventory.sh
+          echo "Inventory contents:"
+          cat inventory.ini
 
       - name: Wait for SSH
-        shell: bash
         run: |
-          set -e
-          IP=$(tr -d '[:space:]' < ansible/public_ip.txt)
+          set -euo pipefail
+          IP="$(tr -d '[:space:]' < ansible/public_ip.txt)"
 
           for i in {1..30}; do
-            ssh -o StrictHostKeyChecking=no \
-                -o UserKnownHostsFile=/dev/null \
-                -o ConnectTimeout=5 \
-                -i /tmp/private_key.pem \
-                "azureuser@$IP" \
-                "echo ok" >/dev/null 2>&1 && exit 0
+            if ssh \
+              -o ControlMaster=no \
+              -o ControlPersist=no \
+              -o ConnectTimeout=5 \
+              -i /tmp/private_key.pem \
+              "azureuser@${IP}" \
+              "echo ok" >/dev/null 2>&1; then
+              echo "SSH is ready on ${IP}"
+              exit 0
+            fi
 
-            echo "Waiting for SSH on $IP..."
+            echo "Waiting for SSH on ${IP}..."
             sleep 10
           done
 
-          echo "SSH not ready on $IP"
+          echo "SSH not ready on ${IP}"
           exit 1
 
-      - name: Run ansible playbook file 
+      - name: Run Ansible playbook
         working-directory: ansible
-        shell: bash
+        env:
+          ANSIBLE_HOST_KEY_CHECKING: "False"
+          ANSIBLE_LOG_PATH: "${{ github.workspace }}/ansible.log"
+          ANSIBLE_SSH_ARGS: "-o ControlMaster=no -o ControlPersist=no"
         run: |
-          set -e
-          ansible-playbook -vvv -i inventory.ini playbook.yml --extra-vars "benchmark_target=${TARGET}"
-        
+          set -euo pipefail
+          ansible-playbook -vvv \
+            -i inventory.ini \
+            playbook.yml \
+            --extra-vars "benchmark_target=${TARGET}"
+
+      - name: Upload Ansible log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ansible-log-${{ matrix.target }}
+          path: ansible.log
+          if-no-files-found: warn
+
       - name: Upload result artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
-         name: results-${{ matrix.target }}
-         path: results/${{ matrix.target }}/
-         if-no-files-found: warn
+          name: results-${{ matrix.target }}
+          path: results/${{ matrix.target }}/
+          if-no-files-found: warn
 
       - name: Terraform destroy
         if: always()
         working-directory: terraform
-        shell: bash
         run: |
-           set -e
-           terraform destroy -auto-approve \
-           -var="resource_group_name=rg-${TARGET}-${RUN_ID}" \
-           -var="vm_name=vm-${TARGET}-${RUN_ID}"
+          set -euo pipefail
+          terraform destroy -auto-approve \
+            -var="resource_group_name=rg-${TARGET}-${RUN_ID}" \
+            -var="vm_name=vm-${TARGET}-${RUN_ID}"
