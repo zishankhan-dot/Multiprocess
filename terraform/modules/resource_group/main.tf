@@ -64,7 +64,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   location = azurerm_resource_group.rmg.location  
   resource_group_name = azurerm_resource_group.rmg.name 
   network_interface_ids = [azurerm_network_interface.nic.id]
-  size = "Standard_B1s"
+  size = "Standard_B1ms"
   admin_username = "azureuser"
   disable_password_authentication = true
   admin_ssh_key {
