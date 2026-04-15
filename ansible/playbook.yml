@@ -15,16 +15,10 @@
       update_cache_retries: 5
       update_cache_retry_max_delay: 30
     
-  - name: install gcc and g++ 
-    apt:
-      name: 
-        - build-essential
-      state: present
-
-  - name : install javac 
-    apt:
-      name: default-jdk
-      state: present
+  - name: run run.sh to download the required compiler for the benchmarking 
+    command: bash "{{ playbook_dir }}/../scripts/run.sh" "{{ benchmark_target }}"
+    args:
+      chdir: "{{playbook_dir}}"
 
   - name: Ensure project directory exists
     raw: mkdir -p {{ project_dir }}/scripts {{ project_dir }}/codes {{ project_dir }}/results
